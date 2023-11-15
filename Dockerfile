@@ -1,5 +1,5 @@
-# Use an image with Maven and Java 11 for the build stage
-FROM maven:3.8.2-jdk-11 AS build
+# Use an image with Maven and Java 17 for the build stage
+FROM maven:3.8.4-openjdk-17 AS build
 
 # Copy the source code into the container
 COPY . .
@@ -7,8 +7,8 @@ COPY . .
 # Build the project using Maven
 RUN mvn clean package -Pprod -DskipTests
 
-# Use an image with Java 11 for the final runtime image
-FROM openjdk:11-jdk-slim AS final
+# Use an image with Java 17 for the final runtime image
+FROM adoptopenjdk:17-jre-slim AS final
 
 # Copy the JAR file from the build stage to the final image
 COPY --from=build /target/DogsManagementSystem-0.0.1-SNAPSHOT.jar DogsManagementSystem.jar
