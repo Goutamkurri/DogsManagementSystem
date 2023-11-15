@@ -8,10 +8,11 @@ COPY . .
 RUN mvn clean package -Pprod -DskipTests
 
 # Use an image with Java 17 for the final runtime image
-FROM adoptopenjdk:17-jre-slim AS final
+FROM adoptopenjdk:17-jdk-slim AS final
 
 # Copy the JAR file from the build stage to the final image
 COPY --from=build /target/DogsManagementSystem-0.0.1-SNAPSHOT.jar DogsManagementSystem.jar
 
 # Specify the command to run on container start
 CMD ["java", "-jar", "DogsManagementSystem.jar"]
+
