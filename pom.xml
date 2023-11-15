@@ -61,10 +61,14 @@
 				<configuration>
 					<image>
 						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
+						<env>
+							<BP_JVM_VERSION>11.*</BP_JVM_VERSION>
+						</env>
 					</image>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>
